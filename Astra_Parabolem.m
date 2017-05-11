@@ -12,19 +12,25 @@ format long
 %USER inputs x1,r1,x2,r2,initial divergence angle, & throat radius, respectively 
 data=[0.5 1.25 5 6 15 1];
 
-xdata= [data(1) data(1) data(3) data(3)]; %Vector of mirrored x inputs
+xdata= [data(1) data(1) data(3) data(3)]; %Vector of x inputs
 ydata= [data(2) -data(2) data(4) -data(4)]; %Vecotor of mirrored y inputs
 div_a=data(5); %Divergence Angle
 
+
+%%%%% Rotate data and have it be plotted vertically, rotate plot back?
+
+
 %Create two points to obtain divergence angle
-da_x1=0;
-da_x2=0.0001;
-da_y1=data(6);
-da_y2=da_y1+(da_x2*tand(div_a));
+dx=0.00001;
+da_x1=data(1);
+da_x2=dx+data(1);
+da_y1=data(2);
+da_y2=da_y1+(dx*tand(div_a));
 
 %Add points to polyfit 
-xdata=[da_x1 da_x1 da_x2 da_x2 xdata];
-ydata=[da_y1 -da_y1 da_y2 -da_y2 ydata];
+xdata=[da_x2 da_x2 xdata]
+ydata=[da_y2 -da_y2 ydata]
+
 
 %Fit four points to polynomial (x^2) curve
 poly=polyfit(ydata, xdata,2)
@@ -34,7 +40,7 @@ poly=polyfit(ydata, xdata,2)
 counter=1;
 y=-10;
 while y<10
-    x(counter)=poly(1)*y^2+poly(2)*y+poly(3)
+    x(counter)=poly(1)*y^2+poly(2)*y+poly(3);
     y=y+0.1;
     counter=counter+1;
 end
@@ -45,6 +51,8 @@ x=polyval(poly,y)
 hold on
 plot(y,x,'o')
 plot(xdata,ydata,'*r','markersize',30)
+xlabel('Inches from Throat');
+ylabel('Inches from center line');
 xlim([-1 10])
 ylim([-10 10])
 grid on
