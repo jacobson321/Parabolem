@@ -18,8 +18,8 @@ clc
 clear
 
 %--- INPUTS ---
-%USER inputs x1,r1,x2,r2,initial divergence angle, & throat radius
-data=[0.5 1.25 14.93 5 30 1];
+%USER inputs x1,r1,x2,r2,initial, & divergence angle
+data=[0.5 1.25 14.93 5 30];
 
 
 %Extract Data input
