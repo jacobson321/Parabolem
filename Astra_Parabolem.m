@@ -18,7 +18,7 @@ clc
 clear
 
 %--- INPUTS ---
-%USER inputs x1,r1,x2,r2,initial, & divergence angle
+%USER inputs x1,r1,x2,r2,initial, & initial divergence angle
 data=[0.5 1.25 14.93 5 30];
 
 
